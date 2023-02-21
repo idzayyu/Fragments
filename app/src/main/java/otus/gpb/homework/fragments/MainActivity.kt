@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
             this.startActivity(myIntent)
         }
 
-        OnBackPressedDispatcher()
     }
 
 

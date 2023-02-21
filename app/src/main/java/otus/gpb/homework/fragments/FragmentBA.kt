@@ -36,7 +36,7 @@ class FragmentBA : Fragment() {
                     .commit()
 
             }
-
+        }
             parentFragmentManager.setFragmentResultListener(
                 "BB_result",
                 this
@@ -44,7 +44,7 @@ class FragmentBA : Fragment() {
                 view.setBackgroundColor(result.getInt("ColorSend"))
 
             }
-        }
+
     }
 }
 

@@ -26,17 +26,6 @@ class FragmentAA(color: Int) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    if (parentFragmentManager.backStackEntryCount > 1) {
-                        parentFragmentManager.popBackStack()
-                    } else {
-                        requireActivity().finish()
-                    }
-                }
-            }
-        )
         val bu: Button = view.findViewById(R.id.toFragmentab)
         bu.setOnClickListener {
             val fragmentAB = FragmentAB(ColorGenerator.generateColor())
