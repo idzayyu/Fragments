@@ -21,15 +21,19 @@ class FragmentBB : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val views = inflater.inflate(R.layout.fragment_fragment_b_b, container, false)
-        views.setBackgroundColor(ColorGenerator.generateColor())
-        val sendcolor: Button = views.findViewById(R.id.sendcolor)
+        return views
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view.setBackgroundColor(ColorGenerator.generateColor())
+        val sendcolor: Button = view.findViewById(R.id.sendcolor)
         sendcolor.setOnClickListener {
             val result = Bundle()
             result.putInt("ColorSend",ColorGenerator.generateColor())
             parentFragmentManager.setFragmentResult("BB_result", result)
 
         }
-        return views
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.OnBackPressedDispatcher
 
 class FragmentAA(color: Int) : Fragment() {
 
@@ -18,18 +20,35 @@ class FragmentAA(color: Int) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var views = inflater.inflate(R.layout.fragment_fragment_a, container, false)
-        var bu : Button = views.findViewById(R.id.toFragmentab)
-        bu.setOnClickListener{
+
+        return views
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (parentFragmentManager.backStackEntryCount > 1) {
+                        parentFragmentManager.popBackStack()
+                    } else {
+                        requireActivity().finish()
+                    }
+                }
+            }
+        )
+        val bu: Button = view.findViewById(R.id.toFragmentab)
+        bu.setOnClickListener {
             val fragmentAB = FragmentAB(ColorGenerator.generateColor())
             parentFragmentManager.beginTransaction()
-                .replace(R.id.frameLayout,fragmentAB)
+                .replace(R.id.frameLayout, fragmentAB)
                 .addToBackStack("fragmentAB")
                 .commit()
         }
-        var fragmentAA : View = views.findViewById(R.id.fragmentAA)
+        val fragmentAA: View = view.findViewById(R.id.fragmentAA)
         fragmentAA.setBackgroundColor(a)
-        return views
     }
+
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

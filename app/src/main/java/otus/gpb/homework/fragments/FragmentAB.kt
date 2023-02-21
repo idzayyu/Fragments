@@ -18,10 +18,14 @@ class FragmentAB(var color: Int) : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var views = inflater.inflate(R.layout.fragment_fragment_a_b, container, false)
-
-        var textView : View = views.findViewById(R.id.trrtg)
-        textView.setBackgroundColor(color)
         return views
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        var textView : View = view.findViewById(R.id.trrtg)
+        textView.setBackgroundColor(color)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

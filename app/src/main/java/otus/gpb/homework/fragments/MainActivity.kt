@@ -3,6 +3,7 @@ package otus.gpb.homework.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -27,16 +28,10 @@ class MainActivity : AppCompatActivity() {
             val myIntent = Intent(this, ActivityTask2::class.java)
             this.startActivity(myIntent)
         }
+
+        OnBackPressedDispatcher()
     }
 
-    override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount > 1) {
-            supportFragmentManager.popBackStack()
-        } else {
-           finish()
-        }
-
-    }
 
 
 }

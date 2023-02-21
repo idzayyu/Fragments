@@ -20,10 +20,14 @@ class FragmentBA : Fragment() {
     ): View? {
         val views = inflater.inflate(R.layout.fragment_fragment_b, container, false)
 
+        return views
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            val buttonOpenFragmentbb: Button = views.findViewById(R.id.button4open_fragmentbb)
+            val buttonOpenFragmentbb: Button = view.findViewById(R.id.button4open_fragmentbb)
             buttonOpenFragmentbb.setOnClickListener {
                 val fragmentBB = FragmentBB()
                 parentFragmentManager.beginTransaction()
@@ -31,32 +35,16 @@ class FragmentBA : Fragment() {
                     .addToBackStack("fragmentBB")
                     .commit()
 
-                parentFragmentManager.setFragmentResultListener(
-                    "BB_result",
-                    this
-                ) { _, result ->
-                    views.setBackgroundColor(result.getInt("ColorSend"))
-                }
             }
-        }
-        else {
 
             parentFragmentManager.setFragmentResultListener(
                 "BB_result",
                 this
             ) { _, result ->
-                views.setBackgroundColor(result.getInt("ColorSend"))
+                view.setBackgroundColor(result.getInt("ColorSend"))
 
             }
         }
-
-        return views
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FragmentBViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }
+
